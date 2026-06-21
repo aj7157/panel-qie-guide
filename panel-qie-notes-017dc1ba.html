@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>企鹅体育 · 运动数据服务介绍</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #f4f5f7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #2c3e50;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* 页面头部 */
+    .hero {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      padding: 2.8rem 2.2rem;
+      margin-bottom: 2.2rem;
+      border: 1px solid #e9eaed;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #1e2a3a;
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 small {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #7b8ba3;
+      margin-left: 0.5rem;
+    }
+    .hero p {
+      max-width: 700px;
+      font-size: 1.05rem;
+      color: #4a5b6e;
+      margin-top: 0.3rem;
+    }
+
+    /* 卡片通用设计 */
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e3e5ea;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      padding: 1.8rem 2rem;
+      margin-bottom: 1.8rem;
+      transition: box-shadow 0.2s ease;
+    }
+    .card:hover {
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    }
+    .card h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #1f2a3f;
+      margin-bottom: 0.9rem;
+      border-left: 4px solid #6d8eb0;
+      padding-left: 0.75rem;
+    }
+    .card p, .card li {
+      font-size: 0.98rem;
+      color: #384b60;
+    }
+    .card ul {
+      list-style: none;
+      padding-left: 0.3rem;
+    }
+    .card li {
+      margin-bottom: 0.55rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .card li::before {
+      content: "•";
+      color: #6d8eb0;
+      font-weight: bold;
+      display: inline-block;
+      width: 1rem;
+    }
+
+    /* 亮点特性网格 */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 0.6rem;
+    }
+    .feature-item {
+      background: #f9fafc;
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      border: 1px solid #eaecef;
+    }
+    .feature-item strong {
+      display: block;
+      font-weight: 600;
+      color: #1f2a3f;
+      margin-bottom: 0.25rem;
+      font-size: 1.02rem;
+    }
+    .feature-item span {
+      font-size: 0.9rem;
+      color: #5b6f84;
+    }
+
+    /* 使用建议网格 */
+    .usage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    .usage-card {
+      background: #f9fafc;
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      border: 1px solid #eaecef;
+    }
+    .usage-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1f2a3f;
+      margin-bottom: 0.35rem;
+    }
+    .usage-card p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    /* FAQ 摘要 */
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+    .faq-item:last-child {
+      margin-bottom: 0;
+    }
+    .faq-q {
+      font-weight: 500;
+      color: #1e2a3a;
+      margin-bottom: 0.15rem;
+    }
+    .faq-a {
+      font-size: 0.92rem;
+      color: #4d6278;
+      padding-left: 0.4rem;
+    }
+
+    /* 提示条 & 链接样式 */
+    .notice {
+      background: #f0f2f6;
+      border-radius: 12px;
+      padding: 1.1rem 1.5rem;
+      font-size: 0.95rem;
+      color: #3a4c62;
+      border-left: 4px solid #9bb1c8;
+    }
+    .notice a {
+      color: #2a4b6e;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #9bb1c8;
+    }
+    .notice a:hover {
+      border-bottom: 1px solid #2a4b6e;
+    }
+
+    .inline-link {
+      color: #2a4b6e;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .inline-link:hover {
+      border-bottom: 1px solid #2a4b6e;
+    }
+
+    /* 页脚 */
+    .footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #8a9bb0;
+      padding: 2rem 0 0.5rem;
+      border-top: 1px solid #e2e5ea;
+      margin-top: 1.5rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      body { padding: 1.2rem 0.8rem; }
+      .hero { padding: 2rem 1.2rem; }
+      .hero h1 { font-size: 1.7rem; }
+      .card { padding: 1.4rem 1.2rem; }
+      .features-grid,
+      .usage-grid { grid-template-columns: 1fr; }
+      .features-grid { gap: 0.8rem; }
+      .usage-grid { gap: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- hero 区域 -->
+  <div class="hero">
+    <h1>企鹅体育 <small>· 数据服务</small></h1>
+    <p>一份围绕运动与赛事的数据聚合工具，帮助爱好者与从业者更系统地获取、整理和观察体育信息。不喧哗，只提供实在的功能。</p>
+  </div>
+
+  <!-- 介绍卡片 -->
+  <div class="card">
+    <h2>这是怎样的产品</h2>
+    <p>企鹅体育定位在体育数据的中转与轻量化分析，并非传统媒体或直播平台。你可以把它理解为一个<strong>运动数据面板</strong>——汇集比赛日程、队伍动态、历史记录等基础信息，并通过简洁的界面呈现。适合日常关注球类、田径等项目的用户，也适合需要快速查阅资料的内容创作者。</p>
+  </div>
+
+  <!-- 亮点特性 (卡片) -->
+  <div class="card">
+    <h2>几个值得一提的细节</h2>
+    <div class="features-grid">
+      <div class="feature-item">
+        <strong>赛事日历聚合</strong>
+        <span>多联赛赛程整合，按日期或队伍筛选，减少跨平台查找的麻烦。</span>
+      </div>
+      <div class="feature-item">
+        <strong>数据字段精简</strong>
+        <span>不堆砌冗余指标，只保留比分、排名、关键统计，信息密度适中。</span>
+      </div>
+      <div class="feature-item">
+        <strong>历史对比快照</strong>
+        <span>支持查看过往赛季的部分数据，便于趋势参考与回顾。</span>
+      </div>
+      <div class="feature-item">
+        <strong>轻量交互反馈</strong>
+        <span>页面响应快，操作反馈明确，没有过度动效打扰浏览节奏。</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 使用建议 (卡片) 嵌入链接在句子中 -->
+  <div class="card">
+    <h2>平时可以怎么用</h2>
+    <div class="usage-grid">
+      <div class="usage-card">
+        <h3>比赛日快速查阅</h3>
+        <p>赛前打开 <a href="https://panel-qie.com" class="inline-link">企鹅体育</a>，确认对阵与时间，避免记错场次。界面适配手机，等车或休息时扫一眼很方便。</p>
+      </div>
+      <div class="usage-card">
+        <h3>内容参考与核对</h3>
+        <p>写赛评、做数据图时，用它核对比分和基础统计。数据源相对稳定，适合作为交叉验证的渠道之一。</p>
+      </div>
+      <div class="usage-card">
+        <h3>联赛跟进与记录</h3>
+        <p>关注特定联赛的连续赛程，利用历史快照回顾近期走势。适合做简单记录，辅助个人观赛笔记。</p>
+      </div>
+      <div class="usage-card">
+        <h3>团队或社群分享</h3>
+        <p>截图或转发赛事卡片到群聊，减少重复回答“几点打”“谁赢了”这类问题。信息简洁，大家都能看懂。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 提示 / 可信说明 (卡片) -->
+  <div class="card">
+    <h2>使用前可以了解的</h2>
+    <div class="notice">
+      <p><strong>数据时效与范围</strong> — 企鹅体育主要提供主流联赛与部分赛事的公开数据，更新频率在分钟至小时级别，极端情况下可能存在延迟。对于实时性要求极高的博彩或即时交易场景，建议结合官方源使用。</p>
+      <p style="margin-top: 0.7rem;"><strong>关于服务性质</strong> — 这是一个信息整理工具，不提供直播流、投注或会员专属内容。所有数据均来自公开渠道，平台不对第三方数据准确性承担连带责任，使用前可自行比对。</p>
+      <p style="margin-top: 0.7rem;">如果你对某场比赛的数据有疑问，可以直接在站内提交反馈，运营人员会在工作时段处理。理性使用，它能成为你了解体育的一个小窗口。</p>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 (卡片) -->
+  <div class="card">
+    <h2>常见疑问摘要</h2>
+    <div class="faq-item">
+      <div class="faq-q">问：需要注册才能使用吗？</div>
+      <div class="faq-a">大部分功能无需登录即可浏览，部分个性化设置（如关注队伍）需简单注册。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">问：数据覆盖哪些运动？</div>
+      <div class="faq-a">以足球、篮球、网球为主，逐步扩展至排球、电竞等。具体列表可在站内“数据源”页面查看。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">问：移动端体验如何？</div>
+      <div class="faq-a">响应式设计，手机浏览器可直接使用。没有独立 App，但添加到主屏幕后使用体验接近原生。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">问：是否会推送通知？</div>
+      <div class="faq-a">目前无推送功能，未来可能增加可选的通知模块，但不会默认开启。</div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer">
+    <p>基于公开数据 · 产品说明页面 · 内容持续迭代</p>
+  </div>
+
+</div>
+</body>
+</html>
